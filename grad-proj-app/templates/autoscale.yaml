@@ -1,0 +1,14 @@
+# apiVersion: autoscaling/v1
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   creationTimestamp: null
+#   name: grad-proj-app
+# spec:
+#   maxReplicas: 5
+#   minReplicas: 3
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: grad-proj-app
+#   targetCPUUtilizationPercentage: 80
+

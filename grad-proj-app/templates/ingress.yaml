@@ -1,0 +1,42 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grad-proj-app                  #like the variable name in Jenkinsfile
+  #namespace: issuetracker-ns
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    kubernetes.io/ingress.class: nginx
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls: 
+  - hosts: 
+    - mosaabradi.com
+    secretName: mytls
+  rules:
+      #iff there is no fixed domain name just copy the dns name of the newly loadbalancer here then apply
+    #- host: a03345d0a6a8544668c54619fd630dfb-538195044.us-east-2.elb.amazonaws.com  
+    - host: mosaabradi.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: angular-service
+                port:
+                  number: 80         
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 5255     
+          - path: /network
+            pathType: Prefix
+            backend:
+              service:
+                name: network
+                port:
+                  number: 8080     

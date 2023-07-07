@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  #namespace: issuetracker-ns
+spec:
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: {{ .Values.containers.api_image }}
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: {{ .Values.containers.api_port }}
+          env:
+            - name: EmailOptions__HostAddress
+              value: smtp-relay.sendinblue.com
+            - name: EmailOptions__HostPort
+              value: '587'
+            - name: EmailOptions__HostUsername
+              value: mosp.rady@gmail.com
+            - name: EmailOptions__HostPassword
+              value: EBIQKSPs79FLvwVk
+            - name: EmailOptions__SenderEmail
+              value: mosp.rady@gmail.com
+            - name: EmailOptions__SenderName
+              value: Mossab Radi
+            - name: Postgres__Host
+              value: grad-proj-db.crk9p8pjr5na.us-east-2.rds.amazonaws.com
+            - name: Postgres__Database
+              value: postgres
+            - name: Postgres__Username
+              value: gradproj
+            - name: Postgres__Password
+              value: gradproj
+            - name: AWS__AccessKeyId
+              value: AKIA3E2RSBFA4UCSIRNL
+            - name: AWS__SecretAccessKey
+              value: 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
+            - name: AWS__Region
+              value: us-east-1
+            - name: AWS__BucketName
+              value: grad-proj-bucket-2023
+            - name: UI__Url
+              value: https://mosaabradi.com  #angular-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+  #namespace: issuetracker-ns
+spec:
+  #type: LoadBalancer
+  selector:
+    app: api
+  ports:
+    - port: {{ .Values.services.api_svc.port }}
+      targetPort: {{ .Values.containers.api_port }}

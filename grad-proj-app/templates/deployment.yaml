@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: network
+  labels:
+    app: network
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: network
+  template:
+    metadata:
+      labels:
+        app: network
+    spec:
+      imagePullSecrets: 
+      - name: my-docker-registry-key
+      #- name: my-ecr-registry-key
+      containers:
+      - name: test
+        image: {{ .Values.containers.network_image }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.containers.network_port }}
+        readinessProbe:
+            tcpSocket:
+              port: {{ .Values.containers.network_port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 5   
+        livenessProbe:
+            tcpSocket:
+              port: {{ .Values.containers.network_port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 5          
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.cpu }}
+            cpu: {{ .Values.resources.requests.memory }}
+          limits:
+            memory: {{ .Values.resources.limits.cpu }}
+            cpu: {{ .Values.resources.limits.memory }}     
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: network
+  labels:
+    app: network
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: network
+
+
+

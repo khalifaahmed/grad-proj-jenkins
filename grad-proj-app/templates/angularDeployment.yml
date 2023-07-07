@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular
+  #namespace: issuetracker-ns
+spec:
+  selector:
+    matchLabels:
+      app: angular
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+        - name: angular
+          image: {{ .Values.containers.angular_image }}
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: {{ .Values.containers.angular_port }}
+          env:
+            - name: API_URL
+              value: https://mosaabradi.com  #api-service     #API_ULL  as variable
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-service
+  #namespace: issuetracker-ns
+spec:
+  #type: LoadBalancer
+  selector:
+    app: angular
+  ports:
+    - port: {{ .Values.services.angular_svc.port }}
+      targetPort: {{ .Values.containers.angular_port }}

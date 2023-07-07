@@ -1,0 +1,37 @@
+
+# metadata:
+#   name: grad-proj-app
+
+containers:
+  network_image: 9529777/grad-proj-app:1.0
+  network_port: 80
+
+  api_image: mosaabradi/issuetrackerapi:4.0.0
+  api_port: 5255
+
+  angular_image: mosaabradi/issuetrackerangular:4.0.0
+  angular_port: 80
+
+services:
+  api_svc:
+    port: 5255
+    target_port: 5255
+  angular_svc:
+    port: 80
+    target_port: 80
+  network_svc:
+    port: 8080
+    target_port: 80
+
+deployment:
+  replicas: 3
+
+
+resources:
+  requests:
+    cpu: "64Mi"
+    memory: "100m"
+  limits:
+    cpu: "128Mi"
+    memory: "200m"  
+
