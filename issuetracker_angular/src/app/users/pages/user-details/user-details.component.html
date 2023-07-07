@@ -1,0 +1,75 @@
+<div class="container-fluid p-0">
+
+	<!-- actions row -->
+	<div class="row m-0">
+
+
+		<div class="col-md-6 px-0 d-flex align-items-center">
+			<button type="button" class="btn p-0 me-2" (click)="location.back()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+					class="bi bi-arrow-left-short text-primary" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+				</svg>
+			</button>
+			<h5>
+				User Id : {{user?.id}}
+			</h5>
+		</div>
+
+
+
+		<div class="col-md-6 px-0 text-end">
+			<button class="btn btn-danger" (click)="showModal()">Delete</button>
+
+			<ng-container *ngIf="isModalOpen">
+				<app-delete-modal deletedElement="{{user!.firstName}}" deletedType="user" (closeModalEvent)="hideModal()"
+					(deleteEvent)="deleteUser()"></app-delete-modal>
+			</ng-container>
+
+
+		</div>
+
+
+	</div>
+	<!-- end of actions -->
+
+	<!-- user details Row -->
+	<div class="row m-0 mt-4">
+		<div class="col d-flex align-items-center gap-4">
+			<img src="{{baseImageUrl}}{{user?.image}}" class="rounded-circle" width="150" alt="">
+			<div class="d-flex gap-2 flex-column">
+				<h5>{{user?.firstName}} {{user?.lastName}}</h5>
+				<p>{{user?.email}}</p>
+			</div>
+		</div>
+	</div>
+	<!-- end of user details -->
+
+
+	<div class="row m-0 mt-4">
+		<!-- user roles row -->
+		<div class="col-md-4">
+			<app-user-roles [user]="user"></app-user-roles>
+		</div>
+		<!-- end of roles -->
+
+		<!-- user assigned projects Row -->
+		<div class="col-md-4">
+			<app-user-projects [userProjects]="userProjects" [userId]="user?.id"></app-user-projects>
+		</div>
+		<!-- end of projects -->
+
+	</div>
+
+
+
+	<!-- assigned issues row -->
+	<div class="row m-0 my-5">
+		<div class="col-12 p-0">
+			<app-user-issues [userIssues]="userIssues"></app-user-issues>
+		</div>
+	</div>
+	<!-- end of issues -->
+
+</div>

@@ -1,0 +1,63 @@
+<div class="modal d-block">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content p-3">
+			<div class="modal-header">
+				<h4>Add or Remove users</h4>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="assignUsersForm" #form="ngForm" (ngSubmit)="submit()">
+					<ng-container class="" formArrayName="usersForm">
+
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Photo</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+
+
+							<tbody>
+
+								<ng-container *ngFor="let userForm of assignUsersForm.controls.usersForm.controls">
+
+
+
+									<tr [formGroup]="userForm" class="">
+										<input type="text" formControlName="Email" hidden>
+										<input type="text" formControlName="UserId" hidden>
+										<td>
+											<input type="checkbox" formControlName="IsSelected" class="form-check-input">
+										</td>
+										<td>
+											<img src="{{imageBaseUrl}}{{userForm.controls.Image.value}}" width="40" height="40"
+												class="rounded-3 me-2" alt="">
+										</td>
+
+										<td>
+											<label class="form-label">{{userForm.controls.Email.value}}</label>
+										</td>
+									</tr>
+
+
+
+
+								</ng-container>
+							</tbody>
+
+
+						</table>
+					</ng-container>
+
+
+					<div class="modal-footer justify-content-center gap-3 btn-group">
+						<button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+						<input type="submit" [value]="btnValue" [disabled]="btnState" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>

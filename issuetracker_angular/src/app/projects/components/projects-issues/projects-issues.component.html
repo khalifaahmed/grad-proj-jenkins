@@ -1,0 +1,21 @@
+<div class="container-fluid p-0">
+	<div class="row m-0 mb-3">
+		<div class="col p-0 d-flex align-items-center gap-2">
+			<h5>
+				Project Issues \
+			</h5>
+			<select class="form-select" style="width: 15rem;" #selectList (change)="changeIssues(selectList.value)">
+				<option value="all-issues">all issues</option>
+				<option value="over-due">over due issues</option>
+				<option value="un-assigned">un assigned issues</option>
+				<option value="open">open issues</option>
+				<option value="closed">closed issues</option>
+			</select>
+		</div>
+	</div>
+	<div class="row m-0">
+		<div class="col p-4 bg-light">
+			<app-issues-table [issues]="filteredIssues"></app-issues-table>
+		</div>
+	</div>
+</div>

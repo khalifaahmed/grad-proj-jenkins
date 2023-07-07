@@ -1,0 +1,67 @@
+<div class="container-fluid p-0">
+
+	<div class="row m-0">
+		<div class="col p-0">
+
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h5 class="text-danger">
+							Over Due Issues
+						</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="overdueIssues"></app-issues-table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row m-0 mt-5">
+		<div class="col p-0">
+
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h5 class="text-danger">
+							Recent Issues
+						</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="recentIssues"></app-issues-table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="row m-0 mt-5">
+		<div class="col p-0">
+
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h5 class="text-warning">
+							Un Assigned Issues
+						</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="unAssignedIssues"></app-issues-table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

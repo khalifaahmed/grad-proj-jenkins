@@ -1,0 +1,20 @@
+.notifications_icon_container {
+	position: absolute;
+	border-radius: 5px;
+	/* left: 100px; */
+	right: 50px;
+	top: 30px;
+	max-width: 500px;
+	overflow: scroll;
+	height: 100%;
+}
+
+
+.notifications-container {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}

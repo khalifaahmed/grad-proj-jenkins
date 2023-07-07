@@ -1,0 +1,45 @@
+<div class="modal d-block">
+	<div class="modal-dialog">
+		<div class="modal-content p-3">
+			<form [formGroup]="closeIssueForm" (ngSubmit)="submit()" #form="ngForm">
+
+				<div class="modal-header flex-column border-0">
+
+					<h5>Close Issue '{{issue.title}}'</h5>
+				</div>
+				<div class="modal-body text-start">
+
+					<div class="text-danger" *ngIf="closeIssueForm.invalid">
+						{{closeIssueForm.errors?.[0]}}
+					</div>
+
+					<input type="text" hidden formControlName="IssueId">
+
+					<div class="form-group my-3">
+						<label for="ResolutionSummary" class="form-label">Resolution Summary</label>
+						<textarea rows="10" formControlName="ResolutionSummary" class="form-control"></textarea>
+					</div>
+
+
+					<!-- validation -->
+					<li class="text-danger"
+						*ngIf="form['submitted'] && closeIssueForm.controls.ResolutionSummary.errors?.['required']">
+						Add a summary
+					</li>
+					<!-- end of validation -->
+
+
+				</div>
+				<div class="modal-footer justify-content-center gap-3 btn-group">
+
+
+
+					<button type="button" class="btn btn-secondary" (click)="hideModal()">Cancel</button>
+
+					<input class="btn btn-success" type="submit" [value]="btnValue" [disabled]="btnState">
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

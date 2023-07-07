@@ -1,0 +1,9 @@
+<div class="notification" *ngIf="toastModel.visible">
+	<div class="p-3 px-4 rounded-3" [ngClass]="toastModel.type">
+
+		<div>
+			{{toastModel.message}}
+		</div>
+
+	</div>
+</div>

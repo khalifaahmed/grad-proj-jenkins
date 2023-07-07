@@ -1,0 +1,172 @@
+<div class="container-fluid p-0">
+
+
+	<!-- actions row -->
+	<div class="row m-0">
+
+		<div class="col-md-8 px-0 d-flex align-items-center">
+			<button type="button" class="btn p-0 me-2" (click)="location.back()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+					class="bi bi-arrow-left-short text-primary" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+				</svg>
+			</button>
+			<h5>
+				Issue Id : {{issue?.id}}
+			</h5>
+		</div>
+
+		<div class="col-md-4 px-0 text-end">
+
+
+			<!-- close Issue -->
+			<button *ngIf="issue?.status==='Open'" class="btn btn-outline-success me-2" (click)="showCloseIssueModal()">Close
+				Issue</button>
+
+			<button *ngIf="issue?.status==='Closed'" class="btn btn-success me-2" disabled>Closed</button>
+
+			<ng-container *ngIf="isCloseIssueModalOpen">
+
+				<app-close-issue-modal [issue]="issue!" (closeModalEvent)="hideCloseIssueModal()"
+					(closedIssueSuccessfullyEvent)="closedIssueSuccessfully($event)"></app-close-issue-modal>
+			</ng-container>
+
+			<!-- end of close issue -->
+			<ng-container *ngIf="authService.USER?.roles?.includes('manager')">
+
+				<a routerLink="/issues/update/{{issue?.id}}" class="btn btn-outline-primary me-2">Edit</a>
+
+
+				<!-- delete issue -->
+				<button class="btn btn-danger" (click)="openDeleteModal()">Delete</button>
+				<ng-container *ngIf="isDeleteIssueModalOpen">
+					<app-delete-modal deletedElement="{{issue!.title}}" deletedType="issue" (closeModalEvent)="hideDeleteModal()"
+						(deleteEvent)="deleteIssue()"></app-delete-modal>
+				</ng-container>
+				<!-- end of delete issue -->
+
+			</ng-container>
+
+
+		</div>
+	</div>
+	<!-- end of actions row -->
+
+
+	<!-- issue detail row -->
+	<div class="row m-0 mt-4">
+		<div class="col-12">
+			<h5>Title : {{issue?.title}}</h5>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-3 px-3">
+		<div class="col-4">
+			<h6 class="text-muted">Project</h6>
+			<p>
+				{{issue?.projectName}}
+			</p>
+		</div>
+		<div class="col-4">
+			<h6 class="text-muted">
+				Priority
+			</h6>
+			<p [ngStyle]="{'color':issue?.priority?.color}">
+				{{issue?.priority ? issue?.priority?.name : '_'}}
+			</p>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-3 px-3">
+		<div class="col-12">
+			<h6 class="text-muted">Description</h6>
+			<p> {{issue?.description}} </p>
+		</div>
+	</div>
+
+	<!-- dates -->
+	<div class="row m-0 mt-3 px-3">
+		<div class="container-fluid p-0">
+			<div class="row m-0">
+				<div class="col-4">
+					<h6 class="text-muted">
+						Target End Date
+					</h6>
+				</div>
+				<div class="col-4">
+					<h6 class="text-muted">
+						Actual End Date
+					</h6>
+				</div>
+			</div>
+			<div class="row m-0 mt-1">
+
+				<div class="col-4">
+					<p>
+						{{issue?.targetResolutionDate?.toString()?.split('T')?.[0]}}
+					</p>
+				</div>
+				<div class="col-4">
+					<p>
+						{{issue?.actualResolutionDate?.toString()?.split('T')?.[0]}}
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row m-0 mt-3 px-3">
+
+		<div class="container-fluid p-0">
+
+			<div class="row m-0">
+				<div class="col-4">
+					<h6 class="text-muted">
+						Created By
+					</h6>
+				</div>
+				<div class="col-4">
+					<h6 class="text-muted">
+						Created On
+					</h6>
+				</div>
+			</div>
+			<div class="row m-0 mt-1">
+
+				<div class="col-4">
+					<p>
+						{{issue?.createdBy}}
+					</p>
+				</div>
+				<div class="col-4">
+					<p>
+						{{issue?.createdOn?.toString()?.split('T')?.[0]}}
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-3 m-0 px-3" *ngIf="issue?.status==='Closed'">
+		<div class="col-12">
+			<h6 class="text-muted">Resolution Summary</h6>
+			<p>
+				{{issue?.resoliotionSummary}}
+			</p>
+		</div>
+	</div>
+	<!-- end of issue detail -->
+
+	<!-- issue users row -->
+	<div class="row m-0 mt-4">
+		<app-issue-users [users]="issueUsers" [issueId]="issue?.id"></app-issue-users>
+	</div>
+
+	<!-- end of users -->
+
+
+</div>

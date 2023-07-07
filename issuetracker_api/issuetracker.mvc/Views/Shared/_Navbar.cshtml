@@ -1,0 +1,54 @@
+@inject SignInManager<AppUser> signInManager;
+@inject UserManager<AppUser> userManager;
+@{
+	AppUser user = new();
+	if (signInManager.IsSignedIn(User))
+	{
+		user = await userManager.FindByEmailAsync(User.Identity.Name);
+	}
+}
+
+<nav class="navbar-light bg-white border-bottom box-shadow p-2">
+	<div class="container-fluid d-flex align-items-center ">
+
+		<button class="me-4 border border-light activelink" id="sidebar_toggle_btn">
+			<i class="bi bi-list h4"></i>
+		</button>
+
+		@if (User.IsInRole("manager"))
+		{
+			<a class="text-dark text-decoration-none h4 mb-1 fw-normal" asp-area="" asp-controller="Home" asp-action="Index">
+				<i class="bi bi-bug-fill"></i>
+				IssueTracker
+			</a>
+		}
+		else
+		{
+			<a class="text-dark text-decoration-none h4 mb-1 fw-normal" asp-area="" asp-controller="issues"
+			asp-action="assignedtome">
+				<i class="bi bi-bug-fill"></i>
+				IssueTracker
+			</a>
+		}
+
+		<div class="ms-auto d-flex align-items-center">
+			@if (signInManager.IsSignedIn(User))
+			{
+				<div class="me-4">
+					<form asp-action="logout" asp-controller="account" method="post">
+						<input type="submit" class="btn btn-light px-0" value="Log out">
+					</form>
+				</div>
+
+				<img src="/img/@user.Image" class="img-fluid rounded-circle boxshadow" width="35px" height="35px">
+
+			}
+			else
+			{
+				<a asp-action="login" asp-controller="account"
+				class="text-dark text-decoration-none activelink px-2 py-1 rounded-pill">SignIn</a>
+			}
+		</div>
+
+	</div>
+</nav>

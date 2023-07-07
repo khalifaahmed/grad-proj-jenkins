@@ -1,0 +1,57 @@
+.sidebar {
+	position: sticky;
+	left: 0;
+	bottom: 0;
+	top: 3.5rem;
+	height: calc(100vh - 3.5rem);
+	padding: 1rem 0.7rem;
+	min-width: 250px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	display: flex;
+}
+
+
+
+.create-issue {
+	width: fit-content;
+	font-weight: normal;
+}
+
+.create-issue svg {
+	width: 20px;
+	height: 20px;
+
+}
+
+
+
+
+
+.sidebar-link {
+	padding: 0.5rem 0.7rem;
+	border-radius: 3px;
+	text-decoration: none;
+	color: black;
+	/* color: #f3f3f3; */
+	/* background-color: #e3e3e944; */
+}
+
+.sidebar-link svg {
+	width: 20px;
+	height: 20px;
+}
+
+.sidebar-link:hover {
+	background-color: #ECECFC;
+}
+
+.activeLink {
+	background-color: #e9eef5;
+	/* background-color: #c2d5ef; */
+}
+
+.sidebar-footer {
+	font-size: 0.9rem;
+	letter-spacing: 0.5;
+}

@@ -1,0 +1,71 @@
+<div class="card shadow">
+
+	<div class="card-header bg-primary text-light">
+		Project Id : {{project.id}}
+	</div>
+
+	<div class="card-body">
+
+		<div class="container-fluid p-0">
+
+			<div class="row m-0">
+				<h5 class="p-0">
+					Name : {{project.name}}
+				</h5>
+			</div>
+
+			<div class="row mt-3 text-muted fw-bold">
+				<div class="col-6">
+					Start Date
+				</div>
+				<div class="col-6">
+					Target End Date
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					{{project.startDate.toString().split('T')[0]}}
+				</div>
+				<div class="col-6">
+					{{project.targetEndDate.toString().split('T')[0]}}
+				</div>
+			</div>
+
+
+			<div class="row mt-3 text-muted fw-bold">
+				<div class="col-6">
+					Actaul End Date
+				</div>
+				<div class="col-6">
+					Created On
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					{{project.actualEndDate.toString().split('T')[0]}}
+				</div>
+				<div class="col-6">
+					{{project.createdOn.toString().split('T')[0]}}
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer position-relative">
+		<div class="d-flex gap-3 w-100 btn-group">
+			<a routerLink="/projects/project/{{project.id}}" class="btn btn-outline-primary flex-grow-1">Detail</a>
+			<a class="btn btn-outline-success flex-grow-1" routerLink="update/{{project.id}}">Edit</a>
+			<button class="btn btn-outline-danger flex-grow-1" (click)="showConfirmDelete()">Delete</button>
+		</div>
+	</div>
+
+	<!-- delete modal -->
+	<ng-container *ngIf="isModalOpen">
+		<app-delete-modal deletedElement="{{project.name}}" deletedType="project" (closeModalEvent)="hideConfirmDelete()"
+			(deleteEvent)="deleteProject()"></app-delete-modal>
+	</ng-container>
+
+</div>

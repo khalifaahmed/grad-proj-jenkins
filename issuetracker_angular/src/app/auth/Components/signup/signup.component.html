@@ -1,0 +1,157 @@
+<div class="auth__container container-fluid pt-5">
+	<div class="row px-2">
+		<div class="col-md-4 shadow bg-white mx-auto rounded-3 px-md-4 px-2 py-5">
+			<h4 class="text-center mb-3">Create New Account</h4>
+			<form [formGroup]="SignupForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" #form="ngForm">
+
+				<!-- message error -->
+				<div *ngIf="SignupForm.errors">
+					<li class="text-danger" *ngFor="let err of errors">
+						{{err}}
+					</li>
+				</div>
+
+				<!--Name Field -->
+				<div class="input-group mt-3">
+					<div class="input-group-text">
+
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
+							viewBox="0 0 16 16">
+							<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+						</svg>
+
+					</div>
+					<!-- First Name -->
+					<input type="text" placeholder="First Name" formControlName="FirstName" class="form-control py-2" required />
+					<!-- End Of First Name -->
+					<!-- Last Name -->
+					<input type="text" placeholder="Last Name" formControlName="LastName" class="form-control py-2" required />
+					<!-- End of Last Name -->
+				</div>
+				<!--End Name -->
+
+				<!--  Name Validation -->
+				<li *ngIf="form['submitted'] && SignupForm.get('FirstName')?.hasError('required')" class="text-danger mb-0">
+					First Name Is Required
+				</li>
+				<li *ngIf="form['submitted'] && SignupForm.get('LastName')?.hasError('required')" class="text-danger mb-0">
+					Last Name Is Required
+				</li>
+				<!-- End Of Validation -->
+
+				<!-- Email -->
+				<div class="input-group mt-3">
+					<div class="input-group-text">
+
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-envelope-fill" viewBox="0 0 16 16">
+							<path
+								d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+						</svg>
+
+					</div>
+					<input type="email" placeholder="Email" formControlName="Email" class="form-control py-2" required />
+				</div>
+				<!-- End Of Email -->
+
+				<!-- Email Validation -->
+				<li *ngIf="form['submitted'] && SignupForm.get('Email')?.hasError('required')" class="text-danger">
+					Email Is Required
+				</li>
+				<li *ngIf="form['submitted'] && SignupForm.get('Email')?.hasError('email')" class="text-danger">
+					Not Valid Email Format
+				</li>
+				<li *ngIf="SignupForm.get('Email')?.hasError('usedEmail')" class="text-danger">
+					The Email Is Already Taken Please Use Another Email
+				</li>
+				<!-- End Validation -->
+
+				<!-- Password -->
+				<div class="input-group mt-3">
+					<div class="input-group-text">
+
+						<svg *ngIf="!showPassword" (click)="togglePassword()" xmlns="http://www.w3.org/2000/svg" width="16"
+							height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+							<path
+								d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+							<path
+								d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+						</svg>
+
+						<svg *ngIf="showPassword" (click)="togglePassword()" xmlns="http://www.w3.org/2000/svg" width="16"
+							height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+							<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+							<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+						</svg>
+
+					</div>
+					<input [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="Password"
+						class="form-control py-2" required />
+				</div>
+				<!-- End of Password -->
+
+				<!-- Password Validation -->
+				<li *ngIf="form['submitted'] && SignupForm.get('Password')?.hasError('required')" class="text-danger">
+					Password Is Required
+				</li>
+				<li *ngIf="form['submitted'] && SignupForm.get('Password')?.hasError('minlength')" class="text-danger">
+					Password Length Should Be Bigger Than 6
+				</li>
+				<!-- End Validation -->
+
+
+				<!-- Confirm Password -->
+				<div class="input-group mt-3">
+					<div class="input-group-text">
+
+						<svg *ngIf="!showConfirmPassword" (click)="toggleConfirmPassword()" xmlns="http://www.w3.org/2000/svg"
+							width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+							<path
+								d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+							<path
+								d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+						</svg>
+
+						<svg *ngIf="showConfirmPassword" (click)="toggleConfirmPassword()" xmlns="http://www.w3.org/2000/svg"
+							width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+							<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+							<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+						</svg>
+
+					</div>
+					<input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="ConfirmPassword"
+						formControlName="ConfirmPassword" class="form-control py-2" required />
+				</div>
+				<!-- End Of Confirm Password -->
+
+				<!-- Confirm Password Validation -->
+				<li *ngIf="form['submitted'] && SignupForm.get('ConfirmPassword')?.hasError('required')" class="text-danger">
+					Confirm Password Is Required
+				</li>
+				<li *ngIf="passwordMatchError && form['submitted']" class="text-danger">
+					Password And Confirm Password Does Not Match
+				</li>
+				<!-- End Validation -->
+
+				<!-- Image -->
+				<div class="d-flex align-items-end gap-2 mt-3">
+					<img src="../../../../assets/default-user-image.png" alt="user image" width="100px"
+						class="img-fluid rounded-circle" id="userImage" />
+					<input type="file" accept="image/*" class="form-control" formControlName="Image" required
+						(change)="ChangeImage($event)" id="signupUserImage" />
+				</div>
+				<!-- End of Image -->
+
+				<!-- Image Validation -->
+				<li *ngIf="form['submitted'] && SignupForm.get('Image')?.hasError('required')" class="text-danger">
+					Image Is Required
+				</li>
+				<!-- End Validation -->
+
+				<!-- submit -->
+				<input type="submit" class="auth__btn btn w-100 mt-3" [value]="signupBtnValue" [disabled]="singupBtnState" />
+				<!-- End Of Submit -->
+			</form>
+		</div>
+	</div>
+</div>

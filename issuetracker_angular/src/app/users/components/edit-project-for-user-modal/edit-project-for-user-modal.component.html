@@ -1,0 +1,65 @@
+<div class="modal d-block">
+	<div class="modal-dialog">
+		<div class="modal-content p-3">
+			<div class="modal-header flex-column border-0">
+
+				<h3 class="modal-title text-muted fw-normal">Edit user projects</h3>
+
+			</div>
+
+
+			<div class="modal-body text-center">
+				<form [formGroup]="editProjectsForm" (ngSubmit)="submit()">
+
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Project Name</th>
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<ng-container *ngFor="let project of editProjectsArray.controls">
+
+								<tr [formGroup]="project">
+
+									<input type="text" formControlName="ProjectId" hidden>
+									<input type="text" formControlName="Name" hidden>
+
+									<td>
+										<input type="checkbox" formControlName="IsSelected" class="form-check-input">
+									</td>
+
+									<td>
+										{{project.controls.Name.value}}
+									</td>
+
+
+								</tr>
+
+
+							</ng-container>
+
+						</tbody>
+
+					</table>
+
+
+					<div class="modal-footer justify-content-center gap-3 btn-group">
+						<button type="button" class="btn btn-secondary" (click)="closeProjectsModal()">Close</button>
+						<input type="submit" [value]="btnValue" [disabled]="btnState" class="btn btn-primary">
+					</div>
+
+
+				</form>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+</div>

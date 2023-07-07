@@ -1,0 +1,113 @@
+<div class="sidebar bg-light border-end border-2 ps-3 flex-column" id="sidebar">
+
+	<!-- create issue link -->
+	<div class="mt-3 mb-4 ms-1">
+		<a class="create-issue border-2 btn btn-outline-danger rounded-pill d-flex align-items-center"
+			routerLink="/issues/new-issue">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+				viewBox="0 0 16 16">
+				<path fill-rule="evenodd"
+					d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+			</svg>
+			&nbsp;New Issue
+		</a>
+	</div>
+	<!-- end of new issue -->
+
+	<!-- sidebar kinks  manager -->
+	<div *ngIf="user.roles.includes('manager')" class="d-flex flex-column gap-2">
+
+		<!-- dashboard link -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/dashboard" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+				class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
+				<path
+					d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0h-13Zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5ZM12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Zm2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0ZM1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1ZM1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25Z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Dashboard</a>
+		<!-- end of dashboard -->
+
+		<!-- projects -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/projects" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers"
+				viewBox="0 0 16 16">
+				<path
+					d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Projects</a>
+		<!-- end of projects -->
+
+		<!-- issues -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/issues" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+				class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+				<path
+					d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z" />
+				<path
+					d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Issues</a>
+		<!-- end of issues -->
+
+		<!-- users -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/users" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people"
+				viewBox="0 0 16 16">
+				<path
+					d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Users</a>
+		<!-- end of users -->
+
+		<!-- adminstraion -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/adminstration" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-gear"
+				viewBox="0 0 16 16">
+				<path
+					d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Adminstraion</a>
+		<!-- end of adminstration -->
+
+
+	</div>
+	<!-- end manager links -->
+
+	<!-- member links -->
+	<div *ngIf="!user.roles.includes('manager')" class="d-flex flex-column gap-2">
+
+		<!-- issue assigned to me -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/issues/assigned-to-me" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
+				viewBox="0 0 16 16">
+				<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Assigned To Me
+		</a>
+		<!-- end issue assigned to me -->
+
+		<!-- reported by me -->
+		<a class="sidebar-link d-flex align-items-center" routerLink="/issues/reported-by-me" routerLinkActive="activeLink">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill"
+				viewBox="0 0 16 16">
+				<path
+					d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+			</svg>
+			&nbsp;&nbsp;&nbsp;Reported By Me
+		</a>
+		<!-- end of reported by me -->
+
+	</div>
+	<!-- end of member link -->
+
+
+	<div class="d-flex align-items-center gap-2 mt-auto sidebar-footer">
+		<div>
+			<img [src]="userImage" class="rounded-circle" width="40px" height="40px" alt="">
+		</div>
+		<div class="">
+			<p class="fw-bold text-dark text-capitalize">{{user.firstName}} {{user.lastName}}</p>
+			<p class="text-muted">{{user.email}}</p>
+		</div>
+	</div>
+</div>

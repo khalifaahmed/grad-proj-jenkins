@@ -1,0 +1,129 @@
+<div class="container-fluid p-0">
+
+	<!-- actions row -->
+	<div class="row m-0">
+
+		<div class="col-md-8 px-0 d-flex align-items-center">
+			<button type="button" class="btn p-0 me-2" (click)="location.back()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+					class="bi bi-arrow-left-short text-primary" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+				</svg>
+			</button>
+			<h5>
+				Project Id : {{project?.id}}
+			</h5>
+		</div>
+
+		<div class="col-md-4 px-0 text-end">
+
+			<a routerLink="/projects/update/{{project?.id}}" class="btn btn-outline-primary me-2">Edit</a>
+
+			<button class="btn btn-danger" (click)="showDeleteModal()">Delete</button>
+
+			<ng-container *ngIf="isDeleteModalOpen">
+				<app-delete-modal deletedElement="{{project!.name}}" deletedType="project" (closeModalEvent)="hideDeleteModal()"
+					(deleteEvent)="deleteProject()"></app-delete-modal>
+			</ng-container>
+
+		</div>
+	</div>
+	<!-- end of actions row -->
+
+	<!-- projects detail row -->
+	<div class="row m-0 mt-4">
+		<div class="col-12">
+			<h5>Name : {{project?.name}}</h5>
+		</div>
+
+
+		<!-- importants dates -->
+		<div class="col-12 mt-3">
+			<div class="container-fluid p-0">
+
+				<div class="row m-0">
+
+					<div class="col-4">
+						<h6 class="text-muted">Start date</h6>
+					</div>
+					<div class="col-4">
+						<h6 class="text-muted">Target end date</h6>
+					</div>
+					<div class="col-4">
+						<h6 class="text-muted">Actual end date</h6>
+					</div>
+
+				</div>
+
+				<div class="row m-0 mt-1">
+
+					<div class="col-4">
+						<p>{{project?.startDate?.toString()?.split('T')?.[0]}}</p>
+					</div>
+					<div class="col-4">
+						<p>{{project?.targetEndDate?.toString()?.split('T')?.[0]}}</p>
+					</div>
+					<div class="col-4">
+						<p>{{project?.actualEndDate?.toString()?.split('T')?.[0]}}</p>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end of important dates -->
+
+		<div class="col-md-8 mt-4">
+
+			<div class="container-fluid p-0">
+
+				<div class="row m-0">
+					<div class="col-md-6">
+						<h6 class="text-muted">Created on</h6>
+					</div>
+					<div class="col-md-6">
+						<h6 class="text-muted">Created by</h6>
+					</div>
+				</div>
+
+				<div class="row m-0 mt-1">
+					<div class="col-md-6">
+						<p>{{project?.createdOn?.toString()?.split('T')?.[0]}}</p>
+					</div>
+					<div class="col-md-6">
+						<p>{{project?.createdBy}}</p>
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+	</div>
+	<!-- end of projects detail -->
+
+	<div class="row m-0 mt-5">
+		<div class="col-md-6 p-0">
+			<app-project-issues-per-month-chart *ngIf="isDataReady | async"
+				[issues]="issues"></app-project-issues-per-month-chart>
+		</div>
+		<div class="col-md-6 p-0">
+			<app-project-issues-pie-chart [issues]="issues" *ngIf="isDataReady | async"></app-project-issues-pie-chart>
+		</div>
+	</div>
+
+	<!-- users row -->
+	<div class="row m-0 mt-4">
+		<app-project-users [users]="assignedUsers" [projectId]="project?.id"></app-project-users>
+	</div>
+	<!-- end of users -->
+
+
+	<!-- issues row -->
+	<div class="row m-0 my-5">
+		<app-projects-issues [issues]="issues" *ngIf="isDataReady | async"></app-projects-issues>
+	</div>
+	<!-- end of issues -->
+</div>

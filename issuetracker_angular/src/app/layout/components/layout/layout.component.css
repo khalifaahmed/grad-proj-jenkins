@@ -1,0 +1,9 @@
+.layout-container {
+	display: flex;
+	width: 100%;
+}
+
+.app-container {
+	background-color: #e9eef5;
+	flex-grow: 1;
+}

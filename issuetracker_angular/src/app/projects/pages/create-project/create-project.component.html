@@ -1,0 +1,60 @@
+<div class="container-fluid px-0">
+	<div class="row m-0">
+		<div class="col-md-7 px-0">
+			<form [formGroup]="createProjectForm" #form="ngForm" (ngSubmit)="Submit()">
+
+				<div class="text-danger" *ngIf="createProjectForm.invalid">
+					{{createProjectForm.errors?.[0]}}
+				</div>
+
+				<!-- Name input group -->
+				<div class="form-group">
+					<label for="Name" class="form-label">Project Name</label>
+					<input type="text" formControlName="Name" required class="form-control">
+				</div>
+				<!-- end of name  -->
+
+				<!-- name validation -->
+				<li *ngIf="form['submitted'] && createProjectForm.controls.Name.errors?.['required']" class="text-danger">
+					Project name is required
+				</li>
+				<!-- end validation -->
+
+
+				<!-- start date -->
+				<div class="form-group mt-3">
+					<label for="StartDate" class="form-label">Start Date</label>
+					<input type="date" formControlName="StartDate" required class="form-control">
+				</div>
+				<!-- end of start date -->
+
+				<!-- start date validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && createProjectForm.controls.StartDate.errors?.['required']">
+					Start date is required
+				</li>
+				<!-- end of start date validateion -->
+
+
+				<!-- target end date -->
+				<div class="form-group mt-3">
+					<label for="TargetEndDate" class="form-label">Target End Date</label>
+					<input type="date" formControlName="TargetEndDate" required class="form-control">
+				</div>
+				<!-- end of target end date -->
+
+				<!-- target end date validation -->
+				<li class="text-danger"
+					*ngIf="form['submitted'] && createProjectForm.controls.TargetEndDate.errors?.['required']">
+					Target end date is required
+				</li>
+				<!-- end of target end date validateion -->
+
+				<div class="text-end mt-3">
+					<button type="button" (click)="location.back()" class="btn me-3">Cancel</button>
+					<input type="submit" [value]="createBtnValue" [disabled]="createBtnState" class="btn btn-primary">
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

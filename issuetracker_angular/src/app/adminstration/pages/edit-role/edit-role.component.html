@@ -1,0 +1,60 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col p-0 d-flex align-items-center">
+			<button type="button" class="btn p-0 me-2" (click)="location.back()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+					class="bi bi-arrow-left-short text-primary" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+				</svg>
+			</button>
+			<h5>
+				Edit Role
+			</h5>
+		</div>
+	</div>
+	<div class="row m-0">
+		<div class="col-md-6 p-0">
+			<form [formGroup]="EditRoleForm" (ngSubmit)="submit()" #form="ngForm">
+
+				<div class="form-floating mt-3 text-light">
+					<input type="text" disabled value="{{role?.id}}" class="form-control bg-primary text-light">
+					<label class="form-label">Role Id</label>
+				</div>
+
+				<!-- all errors -->
+				<div class="text-danger mt-3" *ngIf="EditRoleForm.invalid">
+					<li *ngFor="let err of EditRoleForm.errors |keyvalue">
+						{{err.value.description}}
+					</li>
+				</div>
+
+
+				<!-- Name input -->
+				<div class="form-floating mt-3">
+					<input type="text" required formControlName="Name" class="form-control">
+					<label for="Name" class="form-label">Name</label>
+				</div>
+
+				<!-- name validation -->
+				<li class="text-danger mt-3" *ngIf="form['submitted']&& EditRoleForm.controls.Name.errors?.['required']">
+					Role name field is required
+				</li>
+
+				<div class="my-3 text-end">
+					<button type="button" class="btn me-3" (click)="location.back()">Close</button>
+					<input type="submit" [value]="editBtnValue" [disabled]="editBtnState" class="btn btn-primary">
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+
+	<div class="row m-0">
+		<div class="col-md-6 p-0">
+			<app-users-in-role *ngIf="role" [role]="role"></app-users-in-role>
+		</div>
+	</div>
+</div>

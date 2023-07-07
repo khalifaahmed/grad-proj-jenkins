@@ -1,0 +1,33 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col-md-6 p-0">
+			<form [formGroup]="createRoleForm" (ngSubmit)="submit()" #form="ngForm">
+
+				<h5>Create Role</h5>
+
+
+				<div class="text-danger mt-3" *ngIf="createRoleForm.invalid">
+					<li *ngFor="let err of createRoleForm.errors |keyvalue">
+						{{err.value.description}}
+					</li>
+				</div>
+
+				<div class="form-group mt-3">
+					<label for="Name" class="form-label">Name</label>
+					<input type="text" formControlName="Name" required class="form-control">
+				</div>
+
+				<li class="text-danger" *ngIf="form['submitted'] && createRoleForm.controls.Name.errors?.['required']">
+					Role name is required field
+				</li>
+
+
+				<div class="text-end mt-3">
+					<button class="btn me-3" (click)="location.back()">Cancel</button>
+					<input type="submit" class="btn btn-primary" [value]="createBtnValue" [disabled]="createBtnState">
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

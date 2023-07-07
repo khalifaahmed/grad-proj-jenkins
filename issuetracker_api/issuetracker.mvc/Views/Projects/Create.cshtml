@@ -1,0 +1,44 @@
+@model CreateProjectViewModel
+@{
+	ViewData["Title"] = "Create Project";
+}
+
+<div class="container-fluid my-3">
+	<div class="row ms-md-3">
+		<div class="col-md-7 rounded-3">
+			<form asp-action="create" asp-controller="projects" method="post">
+				<legend class="text-dark mb-4">Create New Project</legend>
+
+				<div class="text-danger" asp-validation-summary="All"></div>
+
+				<div class="form-group my-3">
+					<label asp-for="Name" class="form-label fw-bold text-muted"></label>
+					<input asp-for="Name" class="form-control">
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+
+				<div class="form-group my-3">
+					<label asp-for="StartDate" class="form-label fw-bold text-muted"></label>
+					<input asp-for="StartDate" class="form-control">
+					<span asp-validation-for="StartDate" class="text-danger"></span>
+				</div>
+
+				<div class="form-group my-3">
+					<label asp-for="TargetEndDate" class="form-label fw-bold text-muted"></label>
+					<input asp-for="TargetEndDate" class="form-control">
+					<span asp-validation-for="TargetEndDate" class="text-danger"></span>
+				</div>
+
+				<div class="form-group text-end my-3">
+					<input type="submit" value="Create" class="btn btn-dark"></input>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

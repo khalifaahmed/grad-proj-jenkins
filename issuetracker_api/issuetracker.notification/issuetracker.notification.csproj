@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\issuetracker.Services\issuetracker.Services.csproj" />
+    <ProjectReference Include="..\issuetracker.Entities\issuetracker.Entities.csproj" />
+    <ProjectReference Include="..\issuetracker.Hubs\issuetracker.Hubs.csproj" />
+  </ItemGroup>
+
+   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

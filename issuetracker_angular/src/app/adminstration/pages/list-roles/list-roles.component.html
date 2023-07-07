@@ -1,0 +1,17 @@
+<div class="container-fluid p-0">
+	<div class="row m-0 mb-5">
+		<div class="col-6">
+			<h5>All Roles</h5>
+		</div>
+		<div class="col-6 text-end">
+			<a routerLink="/adminstration/new-role" class="btn btn-primary">Create Role</a>
+		</div>
+	</div>
+	<div class="row m-0 gap-5 justify-content-center">
+		<div class="col-md-5 col p-0" *ngFor="let role of roles |async trackBy:trackByFn">
+			<app-role-card [role]="role"></app-role-card>
+		</div>
+	</div>
+
+
+</div>

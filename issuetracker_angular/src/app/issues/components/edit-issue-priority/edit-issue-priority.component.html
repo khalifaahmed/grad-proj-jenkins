@@ -1,0 +1,71 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col-md-10">
+			<h6 class="text-muted mb-2">
+				Priority
+			</h6>
+
+			<form [formGroup]="selectPriorityFormGroup" (ngSubmit)="submit()" class="mb-4">
+
+
+				<div class="d-flex gap-3 flex-wrap">
+
+					<div class="form-check" *ngFor="let p of allPriorities">
+
+						<input type="radio" formControlName="PriorityId" class="form-check-input" value="{{p.id}}">
+
+
+						<label for="PriorityId" class="form-check-label" [ngStyle]="{'color':p.color}">
+							{{p.name}}</label>
+
+					</div>
+				</div>
+
+				<div class="mt-3 text-end">
+					<input type="submit" [value]="btnValue" [disabled]="btnState" class="btn btn-primary">
+				</div>
+
+			</form>
+
+			<div class="mb-3 border-bottom border-1 border-dark pb-3">
+				<h6 class="text-muted">
+					OR create new priority
+				</h6>
+			</div>
+
+
+			<form [formGroup]="createPriorityFormGroup" #form="ngForm" (ngSubmit)="submitCreatepriority()">
+
+				<div class="form-floating mb-3">
+					<input type="text" formControlName="Name" class="form-control" placeholder="Name">
+					<label>Name</label>
+				</div>
+
+
+				<!-- validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && createPriorityFormGroup.controls.Name.errors?.['required']">
+					Name is required
+				</li>
+				<!-- end of validation -->
+
+				<div class="form-group">
+					<label class="form-label text-muted">Color</label>
+					<input type="color" formControlName="Color" class="form-control  form-control-color" placeholder="color">
+				</div>
+
+				<!-- validation -->
+				<li class="text-danger"
+					*ngIf="form['submitted'] && createPriorityFormGroup.controls.Color.errors?.['required']">
+					Color is required
+				</li>
+				<!-- end of validation -->
+
+				<div class="mt-3 text-end">
+					<input type="submit" [value]="createBtn" [disabled]="createBtnState" class="btn btn-primary">
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>

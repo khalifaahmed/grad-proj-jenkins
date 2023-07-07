@@ -1,0 +1,13 @@
+.btn svg {
+	width: 20px;
+	height: 20px;
+	color: white;
+}
+
+.project-row {
+	transition: all linear 0.2s;
+}
+
+.project-row:hover {
+	scale: 1.01;
+}

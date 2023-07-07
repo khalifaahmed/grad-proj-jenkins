@@ -1,0 +1,88 @@
+<div class="container-fluid px-0 mb-5">
+	<div class="row m-0">
+		<div class="col-md-6">
+
+			<form [formGroup]="editIssueFormGroup" #form="ngForm" (ngSubmit)="submit()">
+
+				<!-- Id Input -->
+				<div class="form-floating">
+					<input type="text" disabled value="{{editIssueFormGroup.controls.Id.value}}"
+						class="form-control bg-primary text-light">
+					<label class="form-label text-light">
+						Issue Id
+					</label>
+				</div>
+				<!-- end of Id -->
+
+
+				<!-- form validation -->
+				<div class="text-danger" *ngIf="editIssueFormGroup.invalid">
+					{{editIssueFormGroup.errors?.[0]}}
+				</div>
+
+
+				<!-- Title Input -->
+				<div class="form-floating mt-3">
+					<input type="text" formControlName="Title" class="form-control">
+					<label for="Title" class="form-label">Title</label>
+				</div>
+				<!-- end of Title -->
+
+				<!-- validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && editIssueFormGroup.controls.Title.errors?.['required']">
+					Issue Title is required
+				</li>
+				<!-- end of validation -->
+
+
+				<!-- description -->
+				<div class="form-group mt-3">
+					<label for="Description" class="form-label text-muted">
+						Description
+					</label>
+					<textarea formControlName="Description" rows="7" class="form-control"></textarea>
+				</div>
+				<!-- end of description -->
+
+				<!-- validation -->
+				<li class="text-danger"
+					*ngIf="form['submitted'] && editIssueFormGroup.controls.Description.errors?.['required']">
+					Issue Description is required
+				</li>
+				<!-- end of validation -->
+
+
+				<!-- resolution Date -->
+				<div class="form-floating mt-3">
+					<input type="date" formControlName="TargetResolutionDate" class="form-control">
+					<label for="StartDate" class="form-label">Target Resolution Date</label>
+				</div>
+				<!-- end of resolution -->
+
+				<!-- summary -->
+				<div class="form-floating mt-3">
+					<input type="text" formControlName="ResoliotionSummary" class="form-control">
+					<label for="ResoliotionSummary" class="form-label">Resolution Summary</label>
+				</div>
+				<!-- end of summary -->
+
+
+				<div class="mt-3 text-end">
+					<button type="button" (click)="location.back()" class="btn me-3">Cancel</button>
+					<input type="submit" class="btn btn-primary" [value]="btnValue" [disabled]="btnState">
+				</div>
+
+
+			</form>
+
+
+		</div>
+
+
+
+		<div class="col-md-6">
+			<app-edit-issue-priority [issue]="issue!"></app-edit-issue-priority>
+		</div>
+
+	</div>
+</div>

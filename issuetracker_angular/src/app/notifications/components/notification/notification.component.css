@@ -1,0 +1,11 @@
+.notification-link:hover {
+	background-color: #ececec;
+}
+
+.notification-date {
+	font-size: small;
+}
+
+.unseen {
+	background-color: #f2f1f1;
+}

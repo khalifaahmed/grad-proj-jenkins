@@ -1,0 +1,70 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col p-0">
+			<h5>Assigned To Me</h5>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-4">
+		<div class="col p-0">
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h6 class="text-danger">
+							Over Due Issues
+						</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="overdue" *ngIf="overdue.length!==0"></app-issues-table>
+						<h6 *ngIf="overdue.length===0">No over due issues</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-4">
+		<div class="col p-0">
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h6 class="text-danger">
+							Open Issues
+						</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="openIssues" *ngIf="openIssues.length!==0"></app-issues-table>
+						<h6 *ngIf="openIssues.length===0">No open issues</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-4">
+		<div class="col p-0">
+			<div class="container-fluid">
+				<div class="row mb-3">
+					<div class="col">
+						<h6 class="text-success">
+							Closed Issues
+						</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="closedIssues" *ngIf="closedIssues.length!==0"></app-issues-table>
+						<h6 *ngIf="closedIssues.length===0">No closed issues</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

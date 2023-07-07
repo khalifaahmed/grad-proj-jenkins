@@ -1,0 +1,36 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+
+		<a class="col p-3 text-decoration-none text-dark notification-link rounded-3"
+			*ngIf="notification.createdInType==='Issue'" routerLink="/issues/issue/{{notification.createdInId}}"
+			[ngClass]="notification.seen?'text-muted':'text-dark unseen'" (click)="markAsRead()">
+			<h6 class="mb-2">Issue</h6>
+			{{notification.text}}
+			<p class="mt-2 notification-date">
+				{{dateFormat}}
+			</p>
+		</a>
+
+		<a class="col p-3 text-decoration-none text-dark notification-link rounded-3"
+			*ngIf="notification.createdInType==='User'" href="/users/details/{{notification.createdInId}}"
+			[ngClass]="notification.seen?'text-muted':'text-dark unseen'" (click)="notification.seen? '': markAsRead()">
+			<h6 class="mb-2">User</h6>
+			{{notification.text}}
+			<p class="mt-2 notification-date">
+				{{dateFormat}}
+			</p>
+		</a>
+
+		<a class="col p-3 text-decoration-none text-dark notification-link rounded-3"
+			*ngIf="notification.createdInType==='Project'" href="/projects/project/{{notification.createdInId}}"
+			[ngClass]="notification.seen?'text-muted':'text-dark unseen'" (click)="notification.seen? '': markAsRead()">
+			<h6 class="mb-2">Project</h6>
+			{{notification.text}}
+			<p class="mt-2 notification-date">
+				{{dateFormat}}
+			</p>
+		</a>
+
+
+	</div>
+</div>

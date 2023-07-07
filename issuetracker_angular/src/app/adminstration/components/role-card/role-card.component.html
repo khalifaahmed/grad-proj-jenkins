@@ -1,0 +1,36 @@
+<div class="card shadow">
+
+	<div class="card-header bg-primary text-light">
+		Role Id : {{role.id}}
+	</div>
+
+	<div class="card-body">
+
+		<div class="container-fluid p-0">
+
+			<div class="row m-0">
+				<h5 class="p-0">
+					{{role.name}}
+				</h5>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer position-relative">
+		<div class="d-flex gap-3 w-100 btn-group">
+			<a class="btn btn-outline-primary flex-grow-1" routerLink="/adminstration/edit-role/{{role.id}}">Edit</a>
+			<button class="btn btn-outline-danger flex-grow-1" (click)="showConfirmDelete()">Delete</button>
+		</div>
+	</div>
+
+
+
+
+	<ng-container *ngIf="isModalOpen">
+		<app-delete-modal deletedElement="{{role.name}}" deletedType="role" (closeModalEvent)="hideConfirmDelete()"
+			(deleteEvent)="DeleteRole()"></app-delete-modal>
+	</ng-container>
+
+</div>

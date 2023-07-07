@@ -1,0 +1,26 @@
+<div class="container-fluid p-0 mt-5">
+	<div class="row m-0">
+		<div class="col p-0">
+			<div class="card">
+				<div class="card-header bg-primary text-light">
+					Users In Role
+				</div>
+
+				<div class="card-body">
+					<li *ngFor="let user of users | async trackBy:trackByFn" class="my-2">
+						<img src="{{imageBaseUrl}}{{user.image}}" width="30" height="30" class="rounded-3 me-2" alt="">
+						{{user.email}}
+					</li>
+				</div>
+
+				<div class="card-footer text-end">
+					<button class="btn btn-outline-primary" (click)="isModalOpen=true">add or remove users</button>
+				</div>
+
+
+				<app-edit-users-in-role *ngIf="isModalOpen" [role]="role" (isModalOpenEvent)="hideModal()"
+					(assignedUsersEvent)="collectNewUsers($event)"></app-edit-users-in-role>
+			</div>
+		</div>
+	</div>
+</div>

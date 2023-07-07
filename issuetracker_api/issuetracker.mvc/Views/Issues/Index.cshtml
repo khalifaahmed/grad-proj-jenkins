@@ -1,0 +1,80 @@
+@model AllIsuesViewModel
+@{
+	ViewData["Title"] = "Issues";
+}
+
+<div class="container-fluid my-3">
+
+	@* Row for filters *@
+	<div class="row mx-2 mb-5">
+		<div class="col ms-md-4 bg-success py-3 px-4 rounded-3 boxshadow">
+			<form asp-action="index" asp-controller="issues" method="get" class="row align-items-end">
+
+				<div class="form-group col-3">
+					<label asp-for="Project" class="form-label text-light fw-bold">Project</label>
+					<input asp-for="Project" list="projectsOptions" class="form-control">
+					<datalist id="projectsOptions">
+						@foreach (var project in Model.Projects)
+						{
+							<option value="@project">@project</option>
+						}
+					</datalist>
+				</div>
+				<div class="form-group col-3">
+					<label asp-for="Priority" class="form-label text-light fw-bold">Priority</label>
+					<input asp-for="Priority" list="priorityOptions" class="form-control">
+					<datalist id="priorityOptions">
+						@foreach (var priority in Model.Priorities)
+						{
+							<option value="@priority">@priority</option>
+						}
+					</datalist>
+				</div>
+				<div class="form-group col-3">
+					<label asp-for="Status" class="form-label text-light fw-bold">Status</label>
+					<input asp-for="Status" list="statusOptions" class="form-control	">
+					<datalist id="statusOptions">
+						@foreach (var status in Model.Statuses)
+						{
+							<option value="@status">@status</option>
+						}
+					</datalist>
+				</div>
+
+				<div class="form-group col-3 text-end">
+					<button type="submit" class="btn btn-outline-light"><i class="bi bi-search"></i> Search</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<div class="row mx-2">
+		<div class="col ms-md-4">
+
+
+			@if (Model.issueViewModels.Count() == 0)
+			{
+				<div class="row">
+					<div class="col text-center">
+						<h4>No Issues yet</h4>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="row mb-4">
+					<div class="col-4 fw-bold">Title</div>
+					<div class="col-4 fw-bold">Project</div>
+					<div class="col-2 fw-bold">Status</div>
+					<div class="col-2 fw-bold">Priority</div>
+				</div>
+
+				<partial name="_Issues" model="@Model.issueViewModels" />
+
+			}
+		</div>
+	</div>
+
+
+</div>

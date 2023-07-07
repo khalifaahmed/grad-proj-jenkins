@@ -1,0 +1,19 @@
+<div class="auth__container d-flex justify-content-center align-items-center">
+
+	<div *ngIf="success===true" class="confirm__account col-md-4 text-center py-5 px-md-4 px-2 shadow rounded-3">
+		<h3 class="text-success">Confirmed Email Successfully</h3>
+		<h5 class="fw-normal">Thank you for verifying your account</h5>
+		<br>
+		<a routerLink="/login" class="btn auth__btn w-50">Login</a>
+	</div>
+
+
+	<div *ngIf="success===false" class="confirm__account col-md-4 text-center py-5 px-md-4 px-2 shadow rounded-3">
+		<h3 class="text-danger">We Can Not Confirm Your Email</h3>
+		<h5 class="fw-normal">something went wrong please contact support</h5>
+		<br>
+	</div>
+
+	<div *ngIf="success===null" class="loader">
+	</div>
+</div>

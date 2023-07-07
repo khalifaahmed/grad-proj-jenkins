@@ -1,0 +1,33 @@
+<div class="container-fluid p-0">
+
+	<div class="row m-0 mb-3">
+		<div class="col">
+			<h5>
+				Dashboard
+			</h5>
+		</div>
+	</div>
+
+	<div class="row m-0 mb-5 gx-4">
+		<div class="col-md-6">
+			<app-sort-issues-chart *ngIf="isDataReady | async" [allProjects]="allProjects"></app-sort-issues-chart>
+		</div>
+		<div class="col-md-6">
+			<app-issues-by-project-chart [allProjects]="allProjects" *ngIf="isDataReady|async"></app-issues-by-project-chart>
+		</div>
+	</div>
+
+	<div class="row m-0 mb-5">
+		<div class="col-md-10 mx-auto">
+			<app-issues-per-month-chart [allIssues]="allIssues" *ngIf="isDataReady | async"></app-issues-per-month-chart>
+		</div>
+	</div>
+
+
+	<div class="row m-0">
+		<div class="col p-0">
+			<app-sort-issues *ngIf="isDataReady|async" [allIssues]="allIssues"></app-sort-issues>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col p-0">
+			<h5>Reported By Me</h5>
+		</div>
+	</div>
+
+	<div class="row m-0 mt-4">
+		<div class="col p-0">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col p-4 bg-light">
+						<app-issues-table [issues]="issues" *ngIf="issues.length!==0"></app-issues-table>
+						<h6 *ngIf="issues.length===0">You did not report about any issue</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col-md-8 p-0">
+			<form [formGroup]="createIssueForm" (ngSubmit)="submit()" #form="ngForm">
+
+				<div class="text-danger" *ngIf="createIssueForm.invalid">
+					{{createIssueForm.errors?.[0]}}
+				</div>
+
+				<!-- Project Input -->
+				<div class="form-group mt-3">
+					<label for="ProjectId" class="form-label">Project</label>
+					<input type="text" formControlName="ProjectId" list="projectsList" class="form-control">
+					<datalist id="projectsList">
+						<option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+					</datalist>
+				</div>
+				<!-- end of project -->
+
+				<!-- validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && createIssueForm.controls.ProjectId.errors?.['required']">
+					Project is required field
+				</li>
+				<!-- end of validation -->
+
+
+
+				<!-- Title Input -->
+				<div class="form-group mt-3">
+					<label for="Title" class="form-label">Title</label>
+					<input type="text" formControlName="Title" class="form-control">
+				</div>
+				<!-- end of title -->
+
+				<!-- validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && createIssueForm.controls.Title.errors?.['required']">
+					Title is required field
+				</li>
+				<!-- end of validation -->
+
+
+				<!-- Description Input -->
+				<div class="form-group mt-3">
+					<label for="Description" class="form-label">Description</label>
+					<textarea type="text" rows="3" formControlName="Description" class="form-control"></textarea>
+				</div>
+				<!-- end of Description -->
+
+				<!-- validation -->
+				<li class="text-danger" *ngIf="form['submitted'] && createIssueForm.controls.Description.errors?.['required']">
+					Description is required field
+				</li>
+				<!-- end of validation -->
+
+
+				<div class="mt-3 text-end">
+					<button type="button" class="btn me-3" (click)="location.back()">Cancel</button>
+					<input type="submit" [value]="btnValue" [disabled]="btnStatus" class="btn btn-primary">
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

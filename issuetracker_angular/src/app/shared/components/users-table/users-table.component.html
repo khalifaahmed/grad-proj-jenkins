@@ -1,0 +1,25 @@
+<div class="container-fluid p-0">
+	<div class="row m-0">
+		<div class="col p-0">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col" class="text-center">Photo</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Roles</th>
+							<th scope="col" class="text-center" *ngIf="showActions">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ng-container *ngFor="let user of userDtos; trackBy: trackByFn">
+							<tr app-user-row [user]="user" [showActions]="showActions">
+							</tr>
+						</ng-container>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

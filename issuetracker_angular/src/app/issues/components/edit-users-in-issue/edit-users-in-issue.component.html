@@ -1,0 +1,2 @@
+<app-select-users (closeModalEvent)="hideModal()" [users]="usersToSelectFrom" (newUsersEvent)="update($event)"
+	*ngIf="isDataReady | async"></app-select-users>
